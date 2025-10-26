@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="thankyou">
+  <div class="checkmark">✓</div>
+  <h2>Payment Successful</h2>
+  <p>Thank you, <strong>{{ booking.name }}</strong> — your booking (ID: <strong>{{ booking.id }}</strong>) is confirmed.</p>
+
+  <div class="details">
+    <p><strong>Flight:</strong> {{ booking.flight.airline }} — {{ booking.flight.from }} → {{ booking.flight.to }}</p>
+    <p><strong>Depart:</strong> {{ booking.flight.depart }} at {{ booking.flight.time }}</p>
+    <p><strong>Receipt sent to:</strong> {{ booking.email }}</p>
+  </div>
+
+  <a class="btn" href="/">Back to Home</a>
+</div>
+{% endblock %}

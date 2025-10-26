@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card booking-card">
+  <h2>Book Flight — {{ flight.airline }} ({{ flight.from }} → {{ flight.to }})</h2>
+  <p>Depart: {{ flight.depart }} • {{ flight.time }} • <strong>${{ flight.price }}</strong></p>
+
+  <form method="post" class="booking-form">
+    <label>Name</label>
+    <input name="name" required>
+
+    <label>Country</label>
+    <input name="country" required>
+
+    <label>Email</label>
+    <input name="email" type="email" required>
+
+    <button class="btn" type="submit">Proceed to Payment</button>
+  </form>
+</div>
+{% endblock %}

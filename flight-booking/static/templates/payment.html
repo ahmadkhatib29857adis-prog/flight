@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card payment-card">
+  <h2>Payment — Booking {{ booking.id }}</h2>
+  <p>Flight: {{ booking.flight.airline }} • {{ booking.flight.from }} → {{ booking.flight.to }}</p>
+  <p>Passenger: {{ booking.name }} ({{ booking.country }})</p>
+  <p class="price">Amount: <strong>${{ booking.flight.price }}</strong></p>
+
+  <form method="post" class="payment-form" id="paymentForm">
+    <label>Card number</label>
+    <input name="card_number" placeholder="1234 5678 9012 3456" required>
+
+    <label>Name on card</label>
+    <input name="card_name" required>
+
+    <div class="row">
+      <div>
+        <label>Expiry</label>
+        <input name="expiry" placeholder="MM/YY" required>
+      </div>
+      <div>
+        <label>CVC</label>
+        <input name="cvc" placeholder="123" required>
+      </div>
+    </div>
+
+    <button class="btn" type="submit">Pay ${{ booking.flight.price }}</button>
+  </form>
+</div>
+
+<script>
+// Fake payment UX: show quick client-side processing animation then let server process
+const form = document.getElementById('paymentForm');
+if (form) {
+  form.addEventListener('submit', (e) => {
+    const btn = form.querySelector('button');
+    btn.disabled = true;
+    btn.textContent = 'Processing…';
+    // Let the POST submit continue to server
+  });
+}
+</script>
+
+{% endblock %}
